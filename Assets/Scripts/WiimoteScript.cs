@@ -67,7 +67,6 @@ public class WiimoteScript : MonoBehaviour {
 
     private IEnumerator CalibrateMotionPlus () {
         if (wmpActivated && wiimote.current_ext == ExtensionController.MOTIONPLUS) {
-            Debug.Log ("Calibrating...");
             MotionPlusData data = wiimote.MotionPlus;
             data.SetZeroValues ();
             Debug.Log ("MotionPlus was calibrated");
@@ -123,7 +122,6 @@ public class WiimoteScript : MonoBehaviour {
         } while (nbOfEvents > 0);
 
         if (wiimote.Button.a) {
-            Debug.Log ("Button a was pressed");
             ResetWiimoteRotation ();
         }
     }
