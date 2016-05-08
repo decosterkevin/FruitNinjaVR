@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using WiimoteApi;
-using System.Runtime.Remoting;
-using System.Threading;
-using System;
-using UnityEngine.Events;
-using System.Globalization;
 
 public class WiimoteScript : MonoBehaviour {
     // minimal value to detect a motion
     [Range (0.0001f, 1)]
     public float detectionThreshold = 0.2f;
+
+    // accelerometer coefficient
+    public float coefficient = 10f;
 
     // experimental acceleration calibration data
     private int[,] accelCalibrationData = {{ 529, 529, 617 },
@@ -21,6 +19,9 @@ public class WiimoteScript : MonoBehaviour {
     // default rotation of the wiimote
     private Quaternion defaultRotation;
 
+    // initial position of the sword
+    private Vector3 initialPosition;
+
     private Wiimote wiimote;
 
     private bool wmpActivated = false;
@@ -28,6 +29,7 @@ public class WiimoteScript : MonoBehaviour {
     void Start () {
         // store default rotation quaternion
         defaultRotation = transform.rotation;
+        initialPosition = transform.position;
 
         WiimoteManager.FindWiimotes ();
 
@@ -69,14 +71,12 @@ public class WiimoteScript : MonoBehaviour {
 
     private IEnumerator CalibrateMotionPlus () {
         if (wmpActivated && wiimote.current_ext == ExtensionController.MOTIONPLUS) {
-            Debug.Log ("Starting Motion Plus calibration");
-            Debug.Log ("Please place Motion Plus in a flat surface");
-            Debug.Log ("Waiting...");
-            yield return new WaitForSeconds (4);
             Debug.Log ("Calibrating...");
             MotionPlusData data = wiimote.MotionPlus;
             data.SetZeroValues ();
             Debug.Log ("MotionPlus was calibrated");
+        } else {
+            yield return null;
         }
     }
 
@@ -89,9 +89,7 @@ public class WiimoteScript : MonoBehaviour {
 
             //Debug.Log ("raw rotation: " + rawRotation);
 
-            Vector3 offsetRotation = rawRotation;
-            //Debug.Log ("offsetRotation :" + offsetRotation);
-            Vector3 rotationDegrees = offsetRotation * Time.deltaTime;
+            Vector3 rotationDegrees = rawRotation * Time.deltaTime;
             //Debug.Log ("rotationdegrees :" + rotationDegrees);
             Vector3 finalRotation = checkDeadZone (rotationDegrees, detectionThreshold);
             //Debug.Log ("finalRotation :" + finalRotation);
@@ -122,6 +120,23 @@ public class WiimoteScript : MonoBehaviour {
         PrintAccelCalibration ();
     }
 
+    private void ReadWiimoteEvents () {
+        int nbOfEvents;
+        do {
+            nbOfEvents = wiimote.ReadWiimoteData ();
+        } while (nbOfEvents > 0);
+
+        if (wiimote.Button.a) {
+            Debug.Log ("Button a was pressed");
+            ResetWiimoteRotation ();
+            transform.position = initialPosition;
+        }
+    }
+
+    private void ResetWiimoteRotation () {
+        transform.rotation = defaultRotation;
+    }
+
     private Vector3 GetAccelVector () {
         float accel_x;
         float accel_y;
@@ -133,22 +148,6 @@ public class WiimoteScript : MonoBehaviour {
         accel_z = -accel [1];
 
         return new Vector3 (accel_x, accel_y, accel_z).normalized;
-    }
-
-    private void ReadWiimoteEvents () {
-        int nbOfEvents;
-        do {
-            nbOfEvents = wiimote.ReadWiimoteData ();
-        } while (nbOfEvents > 0);
-
-        if (wiimote.Button.a) {
-            Debug.Log ("Button a was pressed");
-            ResetWiimoteRotation ();
-        }
-    }
-
-    private void ResetWiimoteRotation () {
-        transform.rotation = defaultRotation;
     }
 
     private static Vector3 checkDeadZone (Vector3 input, float threshold) {
