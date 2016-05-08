@@ -19,9 +19,6 @@ public class WiimoteScript : MonoBehaviour {
     // default rotation of the wiimote
     private Quaternion defaultRotation;
 
-    // initial position of the sword
-    private Vector3 initialPosition;
-
     private Wiimote wiimote;
 
     private bool wmpActivated = false;
@@ -29,7 +26,6 @@ public class WiimoteScript : MonoBehaviour {
     void Start () {
         // store default rotation quaternion
         defaultRotation = transform.rotation;
-        initialPosition = transform.position;
 
         WiimoteManager.FindWiimotes ();
 
@@ -84,7 +80,7 @@ public class WiimoteScript : MonoBehaviour {
         if (wmpActivated && wiimote.current_ext == ExtensionController.MOTIONPLUS) {
             MotionPlusData data = wiimote.MotionPlus;
             Vector3 rawRotation = new Vector3 (data.PitchSpeed,
-                                      data.YawSpeed,
+                                      -data.YawSpeed,
                                       data.RollSpeed);
 
             //Debug.Log ("raw rotation: " + rawRotation);
@@ -94,7 +90,7 @@ public class WiimoteScript : MonoBehaviour {
             Vector3 finalRotation = checkDeadZone (rotationDegrees, detectionThreshold);
             //Debug.Log ("finalRotation :" + finalRotation);
 
-            transform.Rotate (-finalRotation, Space.Self);
+            transform.Rotate (finalRotation, Space.Self);
         }
     }
 
@@ -129,7 +125,6 @@ public class WiimoteScript : MonoBehaviour {
         if (wiimote.Button.a) {
             Debug.Log ("Button a was pressed");
             ResetWiimoteRotation ();
-            transform.position = initialPosition;
         }
     }
 
