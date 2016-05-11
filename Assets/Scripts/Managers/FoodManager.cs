@@ -1,55 +1,87 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FoodManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     public GameObject[] foods;
     public float spawnTime = 3f;
-    public Transform[] spawnPoints;
+    public GameObject[] spawnPoints;
     private Vector3 target = new Vector3(0f, 1f, 0f);
     private Random random;
+
+    private AudioSource[] cannon;
+    private AudioSource[] fuze;
+    private ParticleSystem[] explosions;
+    //Sound constante
+    private static float fuzeSoundOffset = 0.1f;
+    //constante for the decrease asymptotic spawntime function
+    private static float minSpawnTime = fuzeSoundOffset*2.0f;
+    private static float rateSpawnFunction = 0.008f;
+    private static float inflectionSpawnFunction = 150f;
+
+    
+    
+    private bool soundPlaying;
     public float speed;
-    void Start ()
+    void Start()
     {
         random = new Random();
-        InvokeRepeating ("Spawn", spawnTime, spawnTime);
+        soundPlaying = false;
+        cannon = new AudioSource[spawnPoints.Length];
         
-       
+        fuze = new AudioSource[spawnPoints.Length];
+        explosions = new ParticleSystem[spawnPoints.Length];
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            cannon[i] = spawnPoints[i].GetComponents<AudioSource>()[0];
+            
+            fuze[i] = spawnPoints[i].GetComponents<AudioSource>()[1];
+            explosions[i] = spawnPoints[i].GetComponent<ParticleSystem>();
+        }
+
+        InvokeRepeating("Spawn", spawnTime + fuzeSoundOffset, spawnTime);
+
+
     }
 
 
-    void Spawn ()
+    void Spawn()
     {
-        if(playerHealth.currentHealth <= 0f)
+        if (playerHealth.currentHealth <= 0f)
         {
             return;
         }
+        spawnTime = spawnTime -minSpawnTime * Mathf.Exp(-inflectionSpawnFunction* Mathf.Exp(-rateSpawnFunction* ScoreManager.score));
+        
+        StartCoroutine(PlaySound());
+        
+        
+    }
+    IEnumerator PlaySound()
+    {
 
-        int spawnPointIndex = Random.Range (0, spawnPoints.Length);
+        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+
         int foodIndex = Random.Range(0, foods.Length);
-        Vector3 init = spawnPoints[spawnPointIndex].position;
-        GameObject clone = (GameObject)Instantiate(foods[foodIndex], init, spawnPoints[spawnPointIndex].rotation);
+        
+        soundPlaying = true;
+        fuze[spawnPointIndex].time = fuzeSoundOffset;
+        fuze[spawnPointIndex].Play();
+        fuze[spawnPointIndex].SetScheduledEndTime( fuzeSoundOffset + spawnTime);
+        yield return new WaitForSeconds(spawnTime+ fuzeSoundOffset);
+
+        Vector3 init = spawnPoints[spawnPointIndex].transform.position;
+        GameObject clone = (GameObject)Instantiate(foods[foodIndex], init, spawnPoints[spawnPointIndex].transform.rotation);
         Vector3 noisyTarget = target + new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
         Vector3 finalNoisyTarget = noisyTarget;
         Vector3 Vi = (noisyTarget - init).normalized;
 
-        /*float den = 0.0f;
-        float num = 0.0f;
-        if (init.x < 1.0f)
-        {
-            Vi = new Vector3(Vi.z, Vi.y, Vi.x);
-            init = new Vector3(init.z, init.y, init.x);
-            noisyTarget = new Vector3(noisyTarget.z, noisyTarget.y, noisyTarget.x);
-        }
-        
-        den = 2 * Mathf.Pow(Vi.x, 2) * ((Vi.y / Vi.x) * (noisyTarget.x - init.x) + init.y - noisyTarget.y);
-        num = 9.81f * Mathf.Pow((noisyTarget.x-init.x),2.0f);
-        float speed = Mathf.Sqrt(num / den);
-        Debug.Log(speed);
-        Debug.Log(den);
-        Debug.Log(num);*/
-        Vector3 tran = (finalNoisyTarget - spawnPoints[spawnPointIndex].position).normalized * speed;
-
+        Vector3 tran = (finalNoisyTarget - spawnPoints[spawnPointIndex].transform.position).normalized * speed;
+        soundPlaying = false;
         clone.GetComponent<Rigidbody>().velocity = new Vector3(tran.x, 0.0f, tran.z);
+        cannon[spawnPointIndex].Play();
+        explosions[spawnPointIndex].Play();
     }
+
 }
