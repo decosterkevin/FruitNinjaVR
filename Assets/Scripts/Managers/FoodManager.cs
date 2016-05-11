@@ -68,7 +68,7 @@ public class FoodManager : MonoBehaviour
         soundPlaying = true;
         fuze[spawnPointIndex].time = fuzeSoundOffset;
         fuze[spawnPointIndex].Play();
-        fuze[spawnPointIndex].SetScheduledEndTime( fuzeSoundOffset + spawnTime);
+        fuze[spawnPointIndex].SetScheduledEndTime( AudioSettings.dspTime +fuzeSoundOffset + spawnTime);
         yield return new WaitForSeconds(spawnTime+ fuzeSoundOffset);
 
         Vector3 init = spawnPoints[spawnPointIndex].transform.position;
