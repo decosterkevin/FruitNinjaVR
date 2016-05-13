@@ -7,6 +7,9 @@ public class WiimoteScript : MonoBehaviour {
     [Range (0.0001f, 1)]
     public float detectionThreshold = 0.2f;
 
+    [Range(0.1f, 1000)]
+    public float smoothingCoefficient;
+
     // accelerometer coefficient
     public float coefficient = 10f;
 
@@ -48,6 +51,7 @@ public class WiimoteScript : MonoBehaviour {
             ActivateMotionPlus ();
             ReadWiimoteEvents ();
             ReadMotionPlus ();
+            RepositionWiimote();
         }
     }
 
@@ -115,6 +119,22 @@ public class WiimoteScript : MonoBehaviour {
         PrintAccelCalibration ();
     }
 
+    private void RepositionWiimote()
+    {
+
+        if (wmpActivated && wiimote.current_ext == ExtensionController.MOTIONPLUS)
+        {
+            MotionPlusData data = wiimote.MotionPlus;
+
+            if (data.PitchSlow && data.YawSlow && data.RollSlow)
+            {
+                Quaternion targetRotation =
+                    Quaternion.FromToRotation(transform.rotation * GetAccelVector(), -Vector3.up) * transform.rotation;
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, smoothingCoefficient * Time.deltaTime);
+            }
+        }
+    }
+
     private void ReadWiimoteEvents () {
         int nbOfEvents;
         do {
@@ -138,7 +158,7 @@ public class WiimoteScript : MonoBehaviour {
         float[] accel = wiimote.Accel.GetCalibratedAccelData ();
         accel_x = accel [0];
         accel_y = -accel [2];
-        accel_z = -accel [1];
+        accel_z = accel [1];
 
         return new Vector3 (accel_x, accel_y, accel_z).normalized;
     }

@@ -286,6 +286,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -345,6 +346,10 @@ Prefab:
     - target: {fileID: 464240, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462540, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: smoothingCoefficient
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
