@@ -73,6 +73,9 @@ public class FoodManager : MonoBehaviour
 
         Vector3 init = spawnPoints[spawnPointIndex].transform.position;
         GameObject clone = (GameObject)Instantiate(foods[foodIndex], init, spawnPoints[spawnPointIndex].transform.rotation);
+		Destroy (clone, 7); //Destroys the game object after 7 seconds.
+
+
         Vector3 noisyTarget = target + new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
         Vector3 finalNoisyTarget = noisyTarget;
         Vector3 Vi = (noisyTarget - init).normalized;
