@@ -30,20 +30,21 @@ public class SwordManager : MonoBehaviour {
 
 			GameObject expl = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
 
-			Destroy (expl, 3);
+			Debug.Log ("BOOM!");
 
-            //Destroy(other.gameObject);
+			Destroy (expl, 3);
+            Destroy(other.gameObject);
         }
         else if(other.gameObject.tag == "Food") 
         {
             ScoreManager.score += scoreValue;
 
-			Debug.Log ("yes");
-
 			GameObject effect = Instantiate (pointsGain, transform.position, Quaternion.identity) as GameObject;
 
+			Debug.Log ("MIAM!");
+
 			Destroy (effect, 3);
-            //Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
         if (playerHealth.currentHealth <= 0)
         {
