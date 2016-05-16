@@ -19,7 +19,7 @@ public class FoodManager : MonoBehaviour
     private static float minSpawnTime = fuzeSoundOffset*2.0f;
     private static float rateSpawnFunction = 0.008f;
     private static float inflectionSpawnFunction = 150f;
-
+    private int currentFiringTowerIndex = -1;
     
     
     private bool soundPlaying;
@@ -45,6 +45,10 @@ public class FoodManager : MonoBehaviour
 
     }
 
+    public int getCurrentFiringTowerIndex()
+    {
+        return currentFiringTowerIndex;
+    }
 
     void Spawn()
     {
@@ -62,7 +66,7 @@ public class FoodManager : MonoBehaviour
     {
 
         int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-
+        currentFiringTowerIndex = spawnPointIndex;
         int foodIndex = Random.Range(0, foods.Length);
         
         soundPlaying = true;
