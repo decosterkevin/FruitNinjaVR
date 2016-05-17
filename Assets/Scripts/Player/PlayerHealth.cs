@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
     SwordManager sword;
-    FirstPersonController controller;
     Animator anim;
     AudioSource playerAudio;
 
@@ -28,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent <Animator> ();
         playerAudio = GetComponent <AudioSource> ();
         sword = GetComponent<SwordManager>();
-        controller = GetComponent<FirstPersonController>();
         currentHealth = startingHealth;
     }
 
@@ -70,7 +68,6 @@ public class PlayerHealth : MonoBehaviour
 
         //playerAudio.clip = deathClip;
         //playerAudio.Play ();
-        controller.enabled = false;
         sword.enabled = false;
     }
     
