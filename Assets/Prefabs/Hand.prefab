@@ -42,8 +42,8 @@ GameObject:
   - 33: {fileID: 3319080}
   - 23: {fileID: 2335894}
   - 111: {fileID: 11112976}
-  - 64: {fileID: 6436324}
-  - 114: {fileID: 11420152}
+  - 65: {fileID: 6520994}
+  - 114: {fileID: 11419430}
   m_Layer: 0
   m_Name: Skin
   m_TagString: Untagged
@@ -122,8 +122,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176602}
   m_Mesh: {fileID: 4300000, guid: 43cf19174db63f549b650fd48a60e071, type: 3}
---- !u!64 &6436324
-MeshCollider:
+--- !u!65 &6520994
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -132,8 +132,8 @@ MeshCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 43cf19174db63f549b650fd48a60e071, type: 3}
+  m_Size: {x: 0.06125654, y: 0.07785201, z: 0.8936571}
+  m_Center: {x: 0.000000020489097, y: -0.01791215, z: -0.47826004}
 --- !u!111 &11112976
 Animation:
   m_ObjectHideFlags: 1
@@ -148,7 +148,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11420152
+--- !u!114 &11419430
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -161,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 10
   scoreValue: 10
+  explosion: {fileID: 100000, guid: ebd39b50df8574fb88f15e5d023ef3a7, type: 2}
+  pointsGain: {fileID: 100004, guid: a89abc0d2591545288f4c041059ae633, type: 2}
 --- !u!114 &11462540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionThreshold: 0.1
+  smoothingCoefficient: 0
   coefficient: 10
 --- !u!1001 &100100000
 Prefab:
