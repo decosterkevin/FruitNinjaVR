@@ -30,8 +30,6 @@ public class SwordManager : MonoBehaviour {
 
 			GameObject expl = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
 
-			Debug.Log ("BOOM!");
-
 			Destroy (expl, 3);
             Destroy(other.gameObject);
         }
@@ -41,14 +39,8 @@ public class SwordManager : MonoBehaviour {
 
 			GameObject effect = Instantiate (pointsGain, transform.position, Quaternion.identity) as GameObject;
 
-			Debug.Log ("MIAM!");
-
 			Destroy (effect, 3);
             Destroy(other.gameObject);
-        }
-        if (playerHealth.currentHealth <= 0)
-        {
-            Debug.Log("DEAD");
         }
     }
 }
