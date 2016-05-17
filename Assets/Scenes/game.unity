@@ -6535,15 +6535,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -105
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 879
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 481
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_AnchorMin.x
@@ -6551,7 +6551,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_AnchorMax.x
@@ -6559,7 +6559,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
       propertyPath: m_Pivot.x
@@ -6573,6 +6573,14 @@ Prefab:
       propertyPath: foodManager
       value: 
       objectReference: {fileID: 1251335472}
+    - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 22442426, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7bf2161f96a95f14aa2b1a40bb42694a, type: 2}
   m_IsPrefabParent: 0
