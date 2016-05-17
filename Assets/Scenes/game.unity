@@ -5990,19 +5990,6 @@ MeshFilter:
 GameObject:
   m_PrefabParentObject: {fileID: 176602, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
   m_PrefabInternal: {fileID: 889204701}
---- !u!114 &971722165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 971722164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b792d071bbdb664e9ad4e8ccfc97d39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 10
-  scoreValue: 10
 --- !u!64 &971722169
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6786,7 +6773,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022

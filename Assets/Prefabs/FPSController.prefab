@@ -42,7 +42,6 @@ GameObject:
   - 4: {fileID: 426938}
   - 20: {fileID: 2048580}
   - 124: {fileID: 12493814}
-  - 114: {fileID: 11401386}
   m_Layer: 8
   m_Name: FPV_Camera
   m_TagString: FirstPersonCamera
@@ -62,7 +61,6 @@ GameObject:
   - 114: {fileID: 11496302}
   - 54: {fileID: 5487278}
   - 82: {fileID: 8260774}
-  - 114: {fileID: 11436596}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -184,7 +182,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -285,36 +283,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &11401386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6653c0061128f48a4d5961ede317cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
---- !u!114 &11436596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 279cdb5939b690041bee77934bc8ff11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponPlacement: {fileID: 483452}
-  weaponPrefabWithFPV: {fileID: 107606, guid: bc914668b4fc38646b2359e5afac7129, type: 2}
-  weaponPrefabWithoutFPV: {fileID: 0}
-  weapon: {fileID: 0}
-  worldCamera: {fileID: 2040602}
-  fpvCamera: {fileID: 11401386}
-  fpvcam: {fileID: 0}
 --- !u!114 &11496302
 MonoBehaviour:
   m_ObjectHideFlags: 1
