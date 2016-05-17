@@ -12,7 +12,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5463498}
   - 64: {fileID: 6468144}
-  - 135: {fileID: 13582456}
   m_Layer: 0
   m_Name: Waffle
   m_TagString: Food
@@ -92,18 +91,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 37878f2881441d64e83fb9b75b52d91c, type: 3}
---- !u!135 &13582456
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.106713936
-  m_Center: {x: -0.0008011013, y: 0.104356505, z: -0.0005966313}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

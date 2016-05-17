@@ -12,7 +12,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5482362}
   - 64: {fileID: 6457030}
-  - 135: {fileID: 13586608}
   m_Layer: 0
   m_Name: IceCream
   m_TagString: Food
@@ -92,18 +91,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 770c5dadeaf83394ab9b9604cb2a6298, type: 3}
---- !u!135 &13586608
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.11899636
-  m_Center: {x: 0, y: 0.118996345, z: -0.000000026077032}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
