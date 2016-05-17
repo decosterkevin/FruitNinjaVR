@@ -12,7 +12,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 54: {fileID: 5442392}
   - 64: {fileID: 6496146}
-  - 135: {fileID: 13588846}
   m_Layer: 0
   m_Name: Hambuger
   m_TagString: Food
@@ -92,18 +91,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: faa8b5b910f46e64e98b2a548ac7a277, type: 3}
---- !u!135 &13588846
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.112920016
-  m_Center: {x: -0.000000007450581, y: 0.09520307, z: -0.0000000037252903}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

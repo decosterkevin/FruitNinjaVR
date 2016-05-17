@@ -6,6 +6,10 @@ public class SwordManager : MonoBehaviour {
     PlayerHealth playerHealth;
     public int attackDamage = 10;
     public int scoreValue = 10;
+
+	public GameObject explosion;
+	public GameObject pointsGain;
+
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,16 +27,20 @@ public class SwordManager : MonoBehaviour {
         if (other.gameObject.tag == "Bomb")
         {
             playerHealth.TakeDamage(attackDamage);
-            //Destroy(other.gameObject);
+
+			GameObject expl = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
+
+			Destroy (expl, 3);
+            Destroy(other.gameObject);
         }
         else if(other.gameObject.tag == "Food") 
         {
             ScoreManager.score += scoreValue;
-            //Destroy(other.gameObject);
-        }
-        if (playerHealth.currentHealth <= 0)
-        {
-            Debug.Log("DEAD");
+
+			GameObject effect = Instantiate (pointsGain, transform.position, Quaternion.identity) as GameObject;
+
+			Destroy (effect, 3);
+            Destroy(other.gameObject);
         }
     }
 }
