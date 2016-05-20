@@ -6,26 +6,32 @@ public class FoodManager : MonoBehaviour
     public PlayerHealth playerHealth;
     public GameObject[] foods;
     public float spawnTime = 3f;
+    public float destroyTime = 4;
+    public float randomOffset = 0.3f;
     public GameObject[] spawnPoints;
     private Vector3 target = new Vector3(0f, 1f, 0f);
     private Random random;
+
 
     private AudioSource[] cannon;
     private AudioSource[] fuze;
     private ParticleSystem[] explosions;
     //Sound constante
+    private float initialSpawnTime;
     private static float fuzeSoundOffset = 0.1f;
     //constante for the decrease asymptotic spawntime function
     private static float minSpawnTime = fuzeSoundOffset*2.0f;
     private static float rateSpawnFunction = 0.008f;
     private static float inflectionSpawnFunction = 150f;
     private int currentFiringTowerIndex = -1;
+
     
     
     private bool soundPlaying;
     public float speed;
     void Start()
     {
+        initialSpawnTime = spawnTime;
         random = new Random();
         soundPlaying = false;
         cannon = new AudioSource[spawnPoints.Length];
@@ -56,7 +62,7 @@ public class FoodManager : MonoBehaviour
         {
             return;
         }
-        spawnTime = spawnTime -minSpawnTime * Mathf.Exp(-inflectionSpawnFunction* Mathf.Exp(-rateSpawnFunction* ScoreManager.score));
+        spawnTime = initialSpawnTime -(initialSpawnTime - minSpawnTime) * Mathf.Exp(-inflectionSpawnFunction* Mathf.Exp(-rateSpawnFunction* ScoreManager.score));
         
         StartCoroutine(PlaySound());
         
@@ -77,10 +83,11 @@ public class FoodManager : MonoBehaviour
 
         Vector3 init = spawnPoints[spawnPointIndex].transform.position;
         GameObject clone = (GameObject)Instantiate(foods[foodIndex], init, spawnPoints[spawnPointIndex].transform.rotation);
-		Destroy (clone, 7); //Destroys the game object after 7 seconds.
+		Destroy (clone, destroyTime);
 
 
-        Vector3 noisyTarget = target + new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
+        Vector3 noisyTarget = target + new Vector3(Random.Range(-randomOffset, randomOffset), Random.Range(-randomOffset, randomOffset), 
+            Random.Range(-randomOffset, randomOffset));
         Vector3 finalNoisyTarget = noisyTarget;
         Vector3 Vi = (noisyTarget - init).normalized;
 
