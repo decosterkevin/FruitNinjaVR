@@ -5700,6 +5700,26 @@ Prefab:
       propertyPath: scoreValue
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 11419430, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: fruitHitSoundEffect
+      value: 
+      objectReference: {fileID: 1111582917}
+    - target: {fileID: 176602, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419430, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1111582917}
+    - target: {fileID: 11419430, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f3aebff15a2971c49bac005a7bc5bc9b, type: 3}
+    - target: {fileID: 11419430, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+      propertyPath: bombSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 352736e4a87773843acf6d1db11ac882, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
   m_IsPrefabParent: 0
@@ -6312,6 +6332,84 @@ Camera:
   m_PrefabParentObject: {fileID: 2015248, guid: ce816f2e6abb0504092c23ed9b970dfd,
     type: 2}
   m_PrefabInternal: {fileID: 2057841105}
+--- !u!1 &1111582910 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 176602, guid: 946353e3beeeb47ffadea58ef6353f93, type: 2}
+  m_PrefabInternal: {fileID: 889204701}
+--- !u!82 &1111582917
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1111582910}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!4 &1138186894 stripped
 Transform:
   m_PrefabParentObject: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 2}
@@ -6411,6 +6509,7 @@ MonoBehaviour:
   - {fileID: 126848, guid: e08bb4be345877e459917199a96eecfb, type: 2}
   spawnTime: 1.5
   destroyTime: 4
+  randomOffset: 0.3
   spawnPoints:
   - {fileID: 591463264}
   - {fileID: 869379920}

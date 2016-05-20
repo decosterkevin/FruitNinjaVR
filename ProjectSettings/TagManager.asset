@@ -7,6 +7,7 @@ TagManager:
   - Food
   - Bomb
   - FirstPersonCamera
+  - Sword
   layers:
   - Default
   - TransparentFX

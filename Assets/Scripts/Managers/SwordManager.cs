@@ -7,11 +7,14 @@ public class SwordManager : MonoBehaviour {
     public int attackDamage = 10;
     public int scoreValue = 10;
 
+    public AudioClip hitSound;
+    public AudioClip bombSound;
+
 	public GameObject explosion;
 	public GameObject pointsGain;
 
 	private GameObject sword;
-	public AudioSource fruitHitSoundEffect;
+	public AudioSource audioSource;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +22,7 @@ public class SwordManager : MonoBehaviour {
         playerHealth = player.GetComponent<PlayerHealth>();
 
 		sword = GameObject.FindGameObjectWithTag ("Sword");
-		fruitHitSoundEffect = sword.GetComponent<AudioSource> ();
+		audioSource = sword.GetComponent<AudioSource> ();
 
     }
 	
@@ -36,6 +39,8 @@ public class SwordManager : MonoBehaviour {
 
 			GameObject expl = Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
 
+            audioSource.PlayOneShot(bombSound);
+
 			Destroy (expl, 3);
             Destroy(other.gameObject);
         }
@@ -45,7 +50,7 @@ public class SwordManager : MonoBehaviour {
 
 			GameObject effect = Instantiate (pointsGain, transform.position, Quaternion.identity) as GameObject;
 
-			fruitHitSoundEffect.Play ();
+			audioSource.PlayOneShot(hitSound);
 
 			Destroy (effect, 3);
             Destroy(other.gameObject);

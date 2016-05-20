@@ -68,7 +68,6 @@ public class PlayerHealth : MonoBehaviour
 
         //playerAudio.clip = deathClip;
         //playerAudio.Play ();
-        sword.enabled = false;
     }
     
 }
