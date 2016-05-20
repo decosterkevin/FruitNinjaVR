@@ -10,10 +10,16 @@ public class SwordManager : MonoBehaviour {
 	public GameObject explosion;
 	public GameObject pointsGain;
 
+	private GameObject sword;
+	public AudioSource fruitHitSoundEffect;
+
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
+
+		sword = GameObject.FindGameObjectWithTag ("Sword");
+		fruitHitSoundEffect = sword.GetComponent<AudioSource> ();
 
     }
 	
@@ -38,6 +44,8 @@ public class SwordManager : MonoBehaviour {
             ScoreManager.score += scoreValue;
 
 			GameObject effect = Instantiate (pointsGain, transform.position, Quaternion.identity) as GameObject;
+
+			fruitHitSoundEffect.Play ();
 
 			Destroy (effect, 3);
             Destroy(other.gameObject);
