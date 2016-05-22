@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using UnityEngine;
 
 public class FoodManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class FoodManager : MonoBehaviour
     public float destroyTime = 4;
     public float randomOffset = 0.3f;
     public GameObject[] spawnPoints;
+    public GameObject HUDCanvas;
+    public WiimoteScript wiimoteScript;
     private Vector3 target = new Vector3(0f, 1f, 0f);
     private Random random;
 
@@ -24,13 +27,14 @@ public class FoodManager : MonoBehaviour
     private static float rateSpawnFunction = 0.008f;
     private static float inflectionSpawnFunction = 150f;
     private int currentFiringTowerIndex = -1;
-
-    
     
     private bool soundPlaying;
     public float speed;
-    void Start()
-    {
+
+    private GameObject healthBar;
+    private GameObject score;
+    private GameObject introText;
+    void Start() {
         initialSpawnTime = spawnTime;
         random = new Random();
         soundPlaying = false;
@@ -46,10 +50,35 @@ public class FoodManager : MonoBehaviour
             explosions[i] = spawnPoints[i].GetComponent<ParticleSystem>();
         }
 
-        InvokeRepeating("Spawn", spawnTime + fuzeSoundOffset, spawnTime);
+        healthBar = HUDCanvas.transform.Find("HealthUI").gameObject;
+        score = HUDCanvas.transform.Find("ScoreText").gameObject;
+        healthBar.SetActive(false);
+        score.SetActive(false);
+        introText= HUDCanvas.transform.Find("IntroText").gameObject;
+        //Hide score and healthBar
+        StartCoroutine(WaitInput());
 
 
     }
+    private IEnumerator WaitInput()
+    {
+        bool wait = true;
+        while (wait)
+        {
+            if (wiimoteScript.getWiimote().Button.one)
+            {
+
+                //hide introText, display score and healthbar
+                introText.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
+                healthBar.SetActive(true);
+                score.SetActive(true);
+                InvokeRepeating("Spawn", spawnTime + fuzeSoundOffset, spawnTime+ fuzeSoundOffset);
+                wait = false;
+            }
+            yield return null;
+        }
+    }
+
 
     public int getCurrentFiringTowerIndex()
     {

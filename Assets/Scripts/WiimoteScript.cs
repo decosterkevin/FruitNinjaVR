@@ -60,6 +60,10 @@ public class WiimoteScript : MonoBehaviour {
             WiimoteManager.Cleanup (wiimote);
         }
     }
+    public Wiimote getWiimote()
+    {
+        return wiimote;
+    }
 
     private void ActivateMotionPlus () {
         if (!wmpActivated && wiimote.wmp_attached) {
@@ -144,6 +148,7 @@ public class WiimoteScript : MonoBehaviour {
         if (wiimote.Button.a) {
             ResetWiimoteRotation ();
         }
+        
     }
 
     private void ResetWiimoteRotation () {
