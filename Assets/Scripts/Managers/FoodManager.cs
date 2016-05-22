@@ -61,7 +61,7 @@ public class FoodManager : MonoBehaviour
         bool wait = true;
         while (wait)
         {
-            if (wiimoteScript.getWiimote().Button.one)
+            if (wiimoteScript.getWiimote() != null && wiimoteScript.getWiimote().Button.one)
             {
 
                 //hide introText, display score and healthbar
