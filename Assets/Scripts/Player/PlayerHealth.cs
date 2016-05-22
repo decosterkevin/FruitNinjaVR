@@ -14,19 +14,12 @@ public class PlayerHealth : MonoBehaviour
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
-    SwordManager sword;
-    Animator anim;
-    AudioSource playerAudio;
-
     bool isDead;
     bool damaged;
 
 
     void Awake ()
     {
-        anim = GetComponent <Animator> ();
-        playerAudio = GetComponent <AudioSource> ();
-        sword = GetComponent<SwordManager>();
         currentHealth = startingHealth;
     }
 

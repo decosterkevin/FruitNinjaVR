@@ -13,7 +13,6 @@ public class FoodManager : MonoBehaviour
     public GameObject HUDCanvas;
     public WiimoteScript wiimoteScript;
     private Vector3 target = new Vector3(0f, 1f, 0f);
-    private Random random;
 
 
     private AudioSource[] cannon;
@@ -28,7 +27,6 @@ public class FoodManager : MonoBehaviour
     private static float inflectionSpawnFunction = 150f;
     private int currentFiringTowerIndex = -1;
     
-    private bool soundPlaying;
     public float speed;
 
     private GameObject healthBar;
@@ -36,8 +34,6 @@ public class FoodManager : MonoBehaviour
     private GameObject introText;
     void Start() {
         initialSpawnTime = spawnTime;
-        random = new Random();
-        soundPlaying = false;
         cannon = new AudioSource[spawnPoints.Length];
         
         fuze = new AudioSource[spawnPoints.Length];
@@ -104,7 +100,6 @@ public class FoodManager : MonoBehaviour
         currentFiringTowerIndex = spawnPointIndex;
         int foodIndex = Random.Range(0, foods.Length);
         
-        soundPlaying = true;
         fuze[spawnPointIndex].time = fuzeSoundOffset;
         fuze[spawnPointIndex].Play();
         fuze[spawnPointIndex].SetScheduledEndTime( AudioSettings.dspTime +fuzeSoundOffset + spawnTime);
@@ -118,10 +113,8 @@ public class FoodManager : MonoBehaviour
         Vector3 noisyTarget = target + new Vector3(Random.Range(-randomOffset, randomOffset), Random.Range(-randomOffset, randomOffset), 
             Random.Range(-randomOffset, randomOffset));
         Vector3 finalNoisyTarget = noisyTarget;
-        Vector3 Vi = (noisyTarget - init).normalized;
 
         Vector3 tran = (finalNoisyTarget - spawnPoints[spawnPointIndex].transform.position).normalized * speed;
-        soundPlaying = false;
         clone.GetComponent<Rigidbody>().velocity = new Vector3(tran.x, 0.0f, tran.z);
         cannon[spawnPointIndex].Play();
         explosions[spawnPointIndex].Play();
