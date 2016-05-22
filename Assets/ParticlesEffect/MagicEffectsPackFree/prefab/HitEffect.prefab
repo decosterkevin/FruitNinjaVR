@@ -45,7 +45,7 @@ GameObject:
   - 198: {fileID: 19800002}
   - 199: {fileID: 19900002}
   m_Layer: 0
-  m_Name: skillAttack
+  m_Name: HitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,6 +197,15 @@ MonoBehaviour:
   lightPower: {fileID: 0}
   flashFlg: 0
   flashTimer: 0.3
+  revOnTime: 0
+  keepOnTime: 0
+  keepTime: 0
+  flashingFlg: 0
+  minLight: 0
+  maxLight: 1
+  flashingOff: 0
+  flashingOffPower: 0
+  flashingOffIntensity: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
